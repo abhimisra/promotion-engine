@@ -32,7 +32,21 @@ namespace PromotionEngine.UnitTest
         [TestMethod]
         public void TestCheckoutCart()
         {
-            
+            CartManager promotedCartManager = new CartManager(new PromotionEngine());
+            Product product1 = new Product() { Id = 1, Name = "A", Price = 50 };
+            Product product2 = new Product() { Id = 2, Name = "B", Price = 30 };
+            Product product3 = new Product() { Id = 3, Name = "C", Price = 20 };
+            Product product4 = new Product() { Id = 4, Name = "D", Price = 15 };
+
+            Cart cart = new Cart() { Id = 1 };
+            int expected = 280;
+            int actual;
+            promotedCartManager.AddProductToCart(cart, product1, 3);
+            promotedCartManager.AddProductToCart(cart, product2, 5);
+            promotedCartManager.AddProductToCart(cart, product3, 1);
+            promotedCartManager.AddProductToCart(cart, product4, 1);
+            actual = promotedCartManager.CheckoutCart(cart);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
