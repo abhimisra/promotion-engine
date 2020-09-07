@@ -46,7 +46,7 @@ namespace PromotionEngine
 
                                 item.Quantity = item.Quantity - minQuantity;
 
-                                if (item.Quantity < minQuantity-1)
+                                if (item.Quantity < minQuantity)
                                 {
                                     break;
                                 }
