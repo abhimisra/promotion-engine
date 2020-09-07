@@ -76,13 +76,7 @@ namespace PromotionEngine
                                 foreach (var req in otherRequiredProdcut)
                                 {
                                     var price = cart.CartItems.Where(x => x.Product.Id == req).Select(y => y.Product.Price).FirstOrDefault();
-                                    foreach (var x in items)
-                                    {
-                                        if (x.Product.Id == req)
-                                        {
-                                            x.IsProcessed = true;
-                                        }
-                                    }
+                                    items.Where(x => x.Product.Id==req).Select(y=> { y.IsProcessed = true; return y; }).ToList();
                                     requiredProductPrice += price;
                                 }
                                 reducedFinalPrice += item.Product.Price + requiredProductPrice - reduction;
