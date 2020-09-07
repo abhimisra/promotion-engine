@@ -17,23 +17,27 @@ namespace PromotionEngine.Console
             products.Add(productC);
             products.Add(productD);
             Cart cartA = new Cart() { Id = 1 };
-            Cart cartB = new Cart() { Id = 2 };
-            Cart cartC = new Cart() { Id = 3 };
+            Cart cartB = new Cart() { Id = 1 };
+            Cart cartC = new Cart() { Id = 1 };
             CartManager promotedCartManager = new CartManager(new PromotionEngine());
 
+            //Scenario 1 added 
             promotedCartManager.AddProductToCart(cartA, productA, 1);
             promotedCartManager.AddProductToCart(cartA, productB, 1);
             promotedCartManager.AddProductToCart(cartA, productC, 1);
 
+            //Scenario 2 added 
             promotedCartManager.AddProductToCart(cartB, productA, 5);
             promotedCartManager.AddProductToCart(cartB, productB, 5);
             promotedCartManager.AddProductToCart(cartB, productC, 1);
 
+            //Scenario 1 added 
             promotedCartManager.AddProductToCart(cartC, productA, 3);
             promotedCartManager.AddProductToCart(cartC, productB, 5);
             promotedCartManager.AddProductToCart(cartC, productC, 1);
             promotedCartManager.AddProductToCart(cartC, productD, 1);
 
+            //Displying Product Details
             System.Console.WriteLine("=========================");
             System.Console.WriteLine("Product Details");
             System.Console.WriteLine("=========================");
@@ -45,6 +49,7 @@ namespace PromotionEngine.Console
             System.Console.WriteLine("=========================");
             System.Console.WriteLine();
 
+            // Displaying Total with Promotion 
             System.Console.WriteLine("Senario A Promoted Price: " + promotedCartManager.CheckoutCart(cartA));
             System.Console.WriteLine("Senario B Promoted Price: " + promotedCartManager.CheckoutCart(cartB));
             System.Console.WriteLine("Senario C Promoted Price: " + promotedCartManager.CheckoutCart(cartC));
