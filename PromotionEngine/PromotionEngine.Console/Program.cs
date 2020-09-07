@@ -1,0 +1,40 @@
+﻿using PromotionEngine.Business;
+using System.Collections.Generic;
+
+namespace PromotionEngine.Console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Product productA = new Product() { Id = 1, Name = "A", Price = 50 };
+            Product productB = new Product() { Id = 2, Name = "B", Price = 30 };
+            Product productC = new Product() { Id = 3, Name = "C", Price = 20 };
+            Product productD = new Product() { Id = 4, Name = "D", Price = 15 };
+            
+            Cart cartA = new Cart() { Id = 1 };
+            Cart cartB = new Cart() { Id = 2 };
+            Cart cartC = new Cart() { Id = 3 };
+            CartManager promotedCartManager = new CartManager(new PromotionEngine());
+
+            promotedCartManager.AddProductToCart(cartA, productA, 1);
+            promotedCartManager.AddProductToCart(cartA, productB, 1);
+            promotedCartManager.AddProductToCart(cartA, productC, 1);
+
+            promotedCartManager.AddProductToCart(cartB, productA, 5);
+            promotedCartManager.AddProductToCart(cartB, productB, 5);
+            promotedCartManager.AddProductToCart(cartB, productC, 1);
+
+            promotedCartManager.AddProductToCart(cartC, productA, 3);
+            promotedCartManager.AddProductToCart(cartC, productB, 5);
+            promotedCartManager.AddProductToCart(cartC, productC, 1);
+            promotedCartManager.AddProductToCart(cartC, productD, 1);
+           
+
+            System.Console.WriteLine("Senario A Promoted Price: " + promotedCartManager.CheckoutCart(cartA));
+            System.Console.WriteLine("Senario B Promoted Price: " + promotedCartManager.CheckoutCart(cartB));
+            System.Console.WriteLine("Senario C Promoted Price: " + promotedCartManager.CheckoutCart(cartC));
+            System.Console.ReadLine();
+        }
+    }
+}
