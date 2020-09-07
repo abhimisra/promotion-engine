@@ -26,9 +26,10 @@ namespace PromotionEngine
 
             foreach (var item in items)
             {
+
                 var reduction = promotionRules.Where(x => x.ProductId == item.Product.Id).Select(y => y.Reduction).FirstOrDefault();
                 var minQuantity = promotionRules.Where(x => x.ProductId == item.Product.Id).Select(y => y.MinimumQuantity).FirstOrDefault();
-                var otherRequiredProdcut = promotionRules.Where(x => x.ProductId == item.Product.Id).Select(y => y.RequiredOtherProducts).FirstOrDefault();
+                var otherRequiredProduct = promotionRules.Where(x => x.ProductId == item.Product.Id).Select(y => y.RequiredOtherProducts).FirstOrDefault();
 
                 if (!item.IsProcessed)
                 {
@@ -36,7 +37,7 @@ namespace PromotionEngine
                     {
                         // promotion rule exist for product
 
-                        if (otherRequiredProdcut == null)
+                        if (otherRequiredProduct == null)
                         {
                             int itemDiff = item.Quantity - minQuantity;
                             while (itemDiff >= 0)
@@ -62,7 +63,7 @@ namespace PromotionEngine
                         else
                         {
                             int count = 0;
-                            foreach (var req in otherRequiredProdcut)
+                            foreach (var req in otherRequiredProduct)
                             {
                                 var requiredProduct = cart.CartItems.Where(x => x.Product.Id == req).FirstOrDefault();
                                 if (requiredProduct != null)
@@ -70,10 +71,10 @@ namespace PromotionEngine
                                     count++;
                                 }
                             }
-                            if (count >= otherRequiredProdcut.Count())
+                            if (count >= otherRequiredProduct.Count())
                             {
                                 var requiredProductPrice = 0;
-                                foreach (var req in otherRequiredProdcut)
+                                foreach (var req in otherRequiredProduct)
                                 {
                                     var price = cart.CartItems.Where(x => x.Product.Id == req).Select(y => y.Product.Price).FirstOrDefault();
                                     items.Where(x => x.Product.Id==req).Select(y=> { y.IsProcessed = true; return y; }).ToList();
