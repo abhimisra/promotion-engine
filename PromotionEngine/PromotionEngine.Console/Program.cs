@@ -17,14 +17,14 @@ namespace PromotionEngine.Console
             products.Add(productC);
             products.Add(productD);
             Cart cartA = new Cart() { Id = 1 };
-            Cart cartB = new Cart() { Id = 1 };
-            Cart cartC = new Cart() { Id = 1 };
+            Cart cartB = new Cart() { Id = 2 };
+            Cart cartC = new Cart() { Id = 3 };
             CartManager promotedCartManager = new CartManager(new PromotionEngine());
 
             //Scenario 1 added 
             promotedCartManager.AddProductToCart(cartA, productA, 1);
-            promotedCartManager.AddProductToCart(cartA, productB, 2);
-            promotedCartManager.AddProductToCart(cartA, productC, 3);
+            promotedCartManager.AddProductToCart(cartA, productB, 1);
+            promotedCartManager.AddProductToCart(cartA, productC, 1);
 
             //Scenario 2 added 
             promotedCartManager.AddProductToCart(cartB, productA, 5);
