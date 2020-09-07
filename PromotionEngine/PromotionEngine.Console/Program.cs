@@ -11,7 +11,11 @@ namespace PromotionEngine.Console
             Product productB = new Product() { Id = 2, Name = "B", Price = 30 };
             Product productC = new Product() { Id = 3, Name = "C", Price = 20 };
             Product productD = new Product() { Id = 4, Name = "D", Price = 15 };
-            
+            List<Product> products = new List<Product>();
+            products.Add(productA);
+            products.Add(productB);
+            products.Add(productC);
+            products.Add(productD);
             Cart cartA = new Cart() { Id = 1 };
             Cart cartB = new Cart() { Id = 2 };
             Cart cartC = new Cart() { Id = 3 };
@@ -29,7 +33,17 @@ namespace PromotionEngine.Console
             promotedCartManager.AddProductToCart(cartC, productB, 5);
             promotedCartManager.AddProductToCart(cartC, productC, 1);
             promotedCartManager.AddProductToCart(cartC, productD, 1);
-           
+
+            System.Console.WriteLine("=========================");
+            System.Console.WriteLine("Product Details");
+            System.Console.WriteLine("=========================");
+            System.Console.WriteLine("Id" + "   " + "Name" + "    " + "price");
+            foreach (var item in products)
+            {
+                System.Console.WriteLine(item.Id + "     " + item.Name + "       " + item.Price);
+            }
+            System.Console.WriteLine("=========================");
+            System.Console.WriteLine();
 
             System.Console.WriteLine("Senario A Promoted Price: " + promotedCartManager.CheckoutCart(cartA));
             System.Console.WriteLine("Senario B Promoted Price: " + promotedCartManager.CheckoutCart(cartB));
