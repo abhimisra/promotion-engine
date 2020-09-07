@@ -23,8 +23,8 @@ namespace PromotionEngine.Console
 
             //Scenario 1 added 
             promotedCartManager.AddProductToCart(cartA, productA, 1);
-            promotedCartManager.AddProductToCart(cartA, productB, 1);
-            promotedCartManager.AddProductToCart(cartA, productC, 1);
+            promotedCartManager.AddProductToCart(cartA, productB, 2);
+            promotedCartManager.AddProductToCart(cartA, productC, 3);
 
             //Scenario 2 added 
             promotedCartManager.AddProductToCart(cartB, productA, 5);
